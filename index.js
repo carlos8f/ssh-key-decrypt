@@ -97,7 +97,7 @@ function decrypt(encData, type, passphrase, iv, outEnc)
   }
 
 // port of EVP_BytesToKey, as used when decrypting PEM keys
-function passphraseToKey(type, passphrase, salt)
+main.EVP_BytesToKey = function passphraseToKey(type, passphrase, salt)
   {
   debug('passphraseToKey', type, passphrase, salt);
   var nkey = keyBytes[type];
