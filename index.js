@@ -87,8 +87,8 @@ function formatOut(data, outEnc)
 
 function decrypt(encData, type, passphrase, iv, outEnc)
   {
-  debug('decrypt', type, outEnc);
   var key = passphraseToKey(type, passphrase, iv);
+  debug('decrypt', type, passphrase, key, iv);
   var dec = crypto.createDecipheriv(type, key, iv);
   var data = '';
   data += dec.update(encData, 'base64', 'base64');
@@ -151,6 +151,8 @@ function passphraseToKey(type, passphrase, salt)
     if ((nkey == 0) && (niv == 0)) break;
     }
 
+  debug('key', key);
   return key
 }
 main.EVP_BytesToKey = passphraseToKey;
+main.keyBytes = keyBytes;
